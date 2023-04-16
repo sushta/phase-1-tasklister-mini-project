@@ -1,9 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
-  let form = document.querySelector("form")
-  form.addEventListener('submit', (e) => {
-    e.preventDefault()
-    createToDOList(e.target['new-task-description'].value)
-    form.reset()
-  })
+  addingEventListeners()
+  
+
 });
 
+//get the form and add an event listener 
+function addingEventListeners(){
+  document.getElementById("create-task-form")
+  .addEventListener("submit", handleFormSubmit)
+}
+
+function handleFormSubmit(e){
+  e.preventDefault()
+  //console.log(e)
+  const task = e.target[0].value
+  
+  displayTask(task)
+
+}
+
+function displayTask(task) {
+  const taskUl = document.getElementById("tasks")
+
+
+  const taskLi = document.createElement("li")
+
+  taskLi.textContent = task
+  taskUl.appendChild(taskLi)
+}
